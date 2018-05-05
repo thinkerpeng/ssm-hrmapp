@@ -56,8 +56,8 @@
 2018-05-04 22:48:50  [ main:1119 ] - [ DEBUG ]  Resolved location pattern [classpath*:com/pwx/ssmdemo/dao/**/*.class] to resources [file [D:\javaworkspace\ssmdemo\target\classes\com\pwx\ssmdemo\dao\AppointmentDao.class], file [D:\javaworkspace\ssmdemo\target\classes\com\pwx\ssmdemo\dao\BookDao.class]]
 2018-05-04 22:48:50  [ main:1120 ] - [ DEBUG ]  Identified candidate component class: file [D:\javaworkspace\ssmdemo\target\classes\com\pwx\ssmdemo\dao\AppointmentDao.class]
 2018-05-04 22:48:50  [ main:1121 ] - [ DEBUG ]  Identified candidate component class: file [D:\javaworkspace\ssmdemo\target\classes\com\pwx\ssmdemo\dao\BookDao.class]
-2018-05-04 22:48:50  [ main:1123 ] - [ DEBUG ]  Creating MapperFactoryBean with name 'appointmentDao' and 'com.pwx.ssmdemo.dao.AppointmentDao' mapperInterface
-2018-05-04 22:48:50  [ main:1125 ] - [ DEBUG ]  Creating MapperFactoryBean with name 'bookDao' and 'com.pwx.ssmdemo.dao.BookDao' mapperInterface
+2018-05-04 22:48:50  [ main:1123 ] - [ DEBUG ]  Creating MapperFactoryBean with name 'appointmentDao' and 'com.pwx.hrmapp.dao.AppointmentDao' mapperInterface
+2018-05-04 22:48:50  [ main:1125 ] - [ DEBUG ]  Creating MapperFactoryBean with name 'bookDao' and 'com.pwx.hrmapp.dao.BookDao' mapperInterface
 2018-05-04 22:48:50  [ main:1127 ] - [ DEBUG ]  Creating shared instance of singleton bean 'org.springframework.context.support.PropertySourcesPlaceholderConfigurer#0'
 2018-05-04 22:48:50  [ main:1128 ] - [ DEBUG ]  Creating instance of bean 'org.springframework.context.support.PropertySourcesPlaceholderConfigurer#0'
 2018-05-04 22:48:50  [ main:1129 ] - [ DEBUG ]  Eagerly caching bean 'org.springframework.context.support.PropertySourcesPlaceholderConfigurer#0' to allow for resolving potential circular references
@@ -141,10 +141,10 @@
 2018-05-04 22:48:51  [ main:2412 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.mybatis.spring.mapper.MapperScannerConfigurer#0'
 2018-05-04 22:48:51  [ main:2413 ] - [ DEBUG ]  Creating shared instance of singleton bean 'bookServiceImpl'
 2018-05-04 22:48:51  [ main:2414 ] - [ DEBUG ]  Creating instance of bean 'bookServiceImpl'
-2018-05-04 22:48:51  [ main:2426 ] - [ DEBUG ]  Registered injected element on class [com.pwx.ssmdemo.service.impl.BookServiceImpl]: AutowiredFieldElement for private com.pwx.ssmdemo.dao.BookDao com.pwx.ssmdemo.service.impl.BookServiceImpl.bookDao
-2018-05-04 22:48:51  [ main:2426 ] - [ DEBUG ]  Registered injected element on class [com.pwx.ssmdemo.service.impl.BookServiceImpl]: AutowiredFieldElement for private com.pwx.ssmdemo.dao.AppointmentDao com.pwx.ssmdemo.service.impl.BookServiceImpl.appointmentDao
+2018-05-04 22:48:51  [ main:2426 ] - [ DEBUG ]  Registered injected element on class [com.pwx.hrmapp.service.impl.BookServiceImpl]: AutowiredFieldElement for private com.pwx.hrmapp.dao.BookDao com.pwx.hrmapp.service.impl.BookServiceImpl.bookDao
+2018-05-04 22:48:51  [ main:2426 ] - [ DEBUG ]  Registered injected element on class [com.pwx.hrmapp.service.impl.BookServiceImpl]: AutowiredFieldElement for private com.pwx.hrmapp.dao.AppointmentDao com.pwx.hrmapp.service.impl.BookServiceImpl.appointmentDao
 2018-05-04 22:48:51  [ main:2427 ] - [ DEBUG ]  Eagerly caching bean 'bookServiceImpl' to allow for resolving potential circular references
-2018-05-04 22:48:51  [ main:2430 ] - [ DEBUG ]  Processing injected element of bean 'bookServiceImpl': AutowiredFieldElement for private com.pwx.ssmdemo.dao.BookDao com.pwx.ssmdemo.service.impl.BookServiceImpl.bookDao
+2018-05-04 22:48:51  [ main:2430 ] - [ DEBUG ]  Processing injected element of bean 'bookServiceImpl': AutowiredFieldElement for private com.pwx.hrmapp.dao.BookDao com.pwx.hrmapp.service.impl.BookServiceImpl.bookDao
 2018-05-04 22:48:51  [ main:2449 ] - [ DEBUG ]  Creating shared instance of singleton bean 'bookDao'
 2018-05-04 22:48:51  [ main:2450 ] - [ DEBUG ]  Creating instance of bean 'bookDao'
 2018-05-04 22:48:51  [ main:2450 ] - [ DEBUG ]  Eagerly caching bean 'bookDao' to allow for resolving potential circular references
@@ -155,7 +155,7 @@
 2018-05-04 22:48:51  [ main:2480 ] - [ DEBUG ]  Finished creating instance of bean 'bookDao'
 2018-05-04 22:48:51  [ main:2483 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.transaction.config.internalTransactionAdvisor'
 2018-05-04 22:48:51  [ main:2492 ] - [ DEBUG ]  Autowiring by type from bean name 'bookServiceImpl' to bean named 'bookDao'
-2018-05-04 22:48:51  [ main:2492 ] - [ DEBUG ]  Processing injected element of bean 'bookServiceImpl': AutowiredFieldElement for private com.pwx.ssmdemo.dao.AppointmentDao com.pwx.ssmdemo.service.impl.BookServiceImpl.appointmentDao
+2018-05-04 22:48:51  [ main:2492 ] - [ DEBUG ]  Processing injected element of bean 'bookServiceImpl': AutowiredFieldElement for private com.pwx.hrmapp.dao.AppointmentDao com.pwx.hrmapp.service.impl.BookServiceImpl.appointmentDao
 2018-05-04 22:48:51  [ main:2496 ] - [ DEBUG ]  Creating shared instance of singleton bean 'appointmentDao'
 2018-05-04 22:48:51  [ main:2497 ] - [ DEBUG ]  Creating instance of bean 'appointmentDao'
 2018-05-04 22:48:51  [ main:2497 ] - [ DEBUG ]  Eagerly caching bean 'appointmentDao' to allow for resolving potential circular references
@@ -166,9 +166,9 @@
 2018-05-04 22:48:51  [ main:2502 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.transaction.config.internalTransactionAdvisor'
 2018-05-04 22:48:51  [ main:2505 ] - [ DEBUG ]  Autowiring by type from bean name 'bookServiceImpl' to bean named 'appointmentDao'
 2018-05-04 22:48:51  [ main:2505 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.transaction.config.internalTransactionAdvisor'
-2018-05-04 22:48:51  [ main:2513 ] - [ DEBUG ]  Adding transactional method 'com.pwx.ssmdemo.service.impl.BookServiceImpl.appoint' with attribute: PROPAGATION_REQUIRED,ISOLATION_DEFAULT; ''
+2018-05-04 22:48:51  [ main:2513 ] - [ DEBUG ]  Adding transactional method 'com.pwx.hrmapp.service.impl.BookServiceImpl.appoint' with attribute: PROPAGATION_REQUIRED,ISOLATION_DEFAULT; ''
 2018-05-04 22:48:51  [ main:2519 ] - [ DEBUG ]  Creating implicit proxy for bean 'bookServiceImpl' with 0 common interceptors and 1 specific interceptors
-2018-05-04 22:48:51  [ main:2521 ] - [ DEBUG ]  Creating JDK dynamic proxy: target source is SingletonTargetSource for target object [com.pwx.ssmdemo.service.impl.BookServiceImpl@6eb089e6]
+2018-05-04 22:48:51  [ main:2521 ] - [ DEBUG ]  Creating JDK dynamic proxy: target source is SingletonTargetSource for target object [com.pwx.hrmapp.service.impl.BookServiceImpl@6eb089e6]
 2018-05-04 22:48:51  [ main:2532 ] - [ DEBUG ]  Finished creating instance of bean 'bookServiceImpl'
 2018-05-04 22:48:51  [ main:2533 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.context.annotation.internalConfigurationAnnotationProcessor'
 2018-05-04 22:48:51  [ main:2533 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.context.annotation.internalAutowiredAnnotationProcessor'
@@ -300,9 +300,9 @@
 2018-05-04 22:48:52  [ main:3432 ] - [ DEBUG ]  Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@168ad26f: defining beans [bookController,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.event.internalEventListenerProcessor,org.springframework.context.event.internalEventListenerFactory,mvcContentNegotiationManager,org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping,mvcCorsConfigurations,org.springframework.format.support.FormattingConversionServiceFactoryBean#0,org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter,mvcUriComponentsContributor,org.springframework.web.servlet.handler.MappedInterceptor#0,org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver#0,org.springframework.web.servlet.mvc.annotation.ResponseStatusExceptionResolver#0,org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver#0,org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping,org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter,org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter,mvcHandlerMappingIntrospector,org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler#0,org.springframework.web.servlet.handler.SimpleUrlHandlerMapping#0,viewResolver]; parent: org.springframework.beans.factory.support.DefaultListableBeanFactory@2d55e826
 2018-05-04 22:48:52  [ main:3433 ] - [ DEBUG ]  Creating shared instance of singleton bean 'bookController'
 2018-05-04 22:48:52  [ main:3433 ] - [ DEBUG ]  Creating instance of bean 'bookController'
-2018-05-04 22:48:52  [ main:3438 ] - [ DEBUG ]  Registered injected element on class [com.pwx.ssmdemo.controller.BookController]: AutowiredFieldElement for private com.pwx.ssmdemo.service.BookService com.pwx.ssmdemo.controller.BookController.bookService
+2018-05-04 22:48:52  [ main:3438 ] - [ DEBUG ]  Registered injected element on class [com.pwx.hrmapp.controller.BookController]: AutowiredFieldElement for private com.pwx.hrmapp.service.BookService com.pwx.hrmapp.controller.BookController.bookService
 2018-05-04 22:48:52  [ main:3438 ] - [ DEBUG ]  Eagerly caching bean 'bookController' to allow for resolving potential circular references
-2018-05-04 22:48:52  [ main:3441 ] - [ DEBUG ]  Processing injected element of bean 'bookController': AutowiredFieldElement for private com.pwx.ssmdemo.service.BookService com.pwx.ssmdemo.controller.BookController.bookService
+2018-05-04 22:48:52  [ main:3441 ] - [ DEBUG ]  Processing injected element of bean 'bookController': AutowiredFieldElement for private com.pwx.hrmapp.service.BookService com.pwx.hrmapp.controller.BookController.bookService
 2018-05-04 22:48:52  [ main:3443 ] - [ DEBUG ]  Returning cached instance of singleton bean 'bookServiceImpl'
 2018-05-04 22:48:52  [ main:3443 ] - [ DEBUG ]  Autowiring by type from bean name 'bookController' to bean named 'bookServiceImpl'
 2018-05-04 22:48:52  [ main:3444 ] - [ DEBUG ]  Finished creating instance of bean 'bookController'
@@ -345,8 +345,8 @@
 2018-05-04 22:48:52  [ main:3952 ] - [ DEBUG ]  Finished creating instance of bean 'org.springframework.web.servlet.handler.MappedInterceptor#0'
 2018-05-04 22:48:52  [ main:3953 ] - [ DEBUG ]  Invoking afterPropertiesSet() on bean with name 'org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping'
 2018-05-04 22:48:52  [ main:3954 ] - [ DEBUG ]  Looking for request mappings in application context: WebApplicationContext for namespace 'springmvc-servlet': startup date [Fri May 04 22:48:51 CST 2018]; parent: Root WebApplicationContext
-2018-05-04 22:48:52  [ main:3971 ] - [ DEBUG ]  1 request handler methods found on class com.pwx.ssmdemo.controller.BookController: {private java.lang.String com.pwx.ssmdemo.controller.BookController.list(org.springframework.ui.Model)={[/book/list],methods=[GET]}}
-2018-05-04 22:48:52  [ main:3972 ] - [ INFO ]  Mapped "{[/book/list],methods=[GET]}" onto private java.lang.String com.pwx.ssmdemo.controller.BookController.list(org.springframework.ui.Model)
+2018-05-04 22:48:52  [ main:3971 ] - [ DEBUG ]  1 request handler methods found on class com.pwx.hrmapp.controller.BookController: {private java.lang.String com.pwx.hrmapp.controller.BookController.list(org.springframework.ui.Model)={[/book/list],methods=[GET]}}
+2018-05-04 22:48:52  [ main:3972 ] - [ INFO ]  Mapped "{[/book/list],methods=[GET]}" onto private java.lang.String com.pwx.hrmapp.controller.BookController.list(org.springframework.ui.Model)
 2018-05-04 22:48:52  [ main:3975 ] - [ DEBUG ]  Finished creating instance of bean 'org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping'
 2018-05-04 22:48:52  [ main:3976 ] - [ DEBUG ]  Returning cached instance of singleton bean 'mvcCorsConfigurations'
 2018-05-04 22:48:52  [ main:3976 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.format.support.FormattingConversionServiceFactoryBean#0'
@@ -548,7 +548,7 @@
 2018-05-04 22:48:53  [ main:4732 ] - [ DEBUG ]  Servlet 'springmvc' configured successfully
 2018-05-04 22:48:56  [ 1960031800@qtp-721648892-0:7690 ] - [ DEBUG ]  DispatcherServlet with name 'springmvc' processing GET request for [/ssmdemo/book/list]
 2018-05-04 22:48:56  [ 1960031800@qtp-721648892-0:7692 ] - [ DEBUG ]  Looking up handler method for path /book/list
-2018-05-04 22:48:56  [ 1960031800@qtp-721648892-0:7695 ] - [ DEBUG ]  Returning handler method [private java.lang.String com.pwx.ssmdemo.controller.BookController.list(org.springframework.ui.Model)]
+2018-05-04 22:48:56  [ 1960031800@qtp-721648892-0:7695 ] - [ DEBUG ]  Returning handler method [private java.lang.String com.pwx.hrmapp.controller.BookController.list(org.springframework.ui.Model)]
 2018-05-04 22:48:56  [ 1960031800@qtp-721648892-0:7696 ] - [ DEBUG ]  Returning cached instance of singleton bean 'bookController'
 2018-05-04 22:48:56  [ 1960031800@qtp-721648892-0:7698 ] - [ DEBUG ]  Last-Modified value for [/ssmdemo/book/list] is: -1
 2018-05-04 22:48:56  [ 1960031800@qtp-721648892-0:7713 ] - [ DEBUG ]  Returning cached instance of singleton bean 'org.springframework.transaction.interceptor.TransactionInterceptor#0'
@@ -618,7 +618,7 @@
 2018-05-04 22:51:40  [ main:1903 ] - [ INFO ]  Refreshing WebApplicationContext for namespace 'springmvc-servlet': startup date [Fri May 04 22:51:40 CST 2018]; parent: Root WebApplicationContext
 2018-05-04 22:51:40  [ main:1904 ] - [ INFO ]  Loading XML bean definitions from class path resource [springmvc-config.xml]
 2018-05-04 22:51:40  [ main:2126 ] - [ INFO ]  JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
-2018-05-04 22:51:41  [ main:2691 ] - [ INFO ]  Mapped "{[/book/list],methods=[GET]}" onto private java.lang.String com.pwx.ssmdemo.controller.BookController.list(org.springframework.ui.Model)
+2018-05-04 22:51:41  [ main:2691 ] - [ INFO ]  Mapped "{[/book/list],methods=[GET]}" onto private java.lang.String com.pwx.hrmapp.controller.BookController.list(org.springframework.ui.Model)
 2018-05-04 22:51:41  [ main:3025 ] - [ INFO ]  Looking for @ControllerAdvice: WebApplicationContext for namespace 'springmvc-servlet': startup date [Fri May 04 22:51:40 CST 2018]; parent: Root WebApplicationContext
 2018-05-04 22:51:41  [ main:3095 ] - [ INFO ]  Looking for @ControllerAdvice: WebApplicationContext for namespace 'springmvc-servlet': startup date [Fri May 04 22:51:40 CST 2018]; parent: Root WebApplicationContext
 2018-05-04 22:51:41  [ main:3167 ] - [ INFO ]  Mapped URL path [/**] onto handler 'org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler#0'

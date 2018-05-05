@@ -27,18 +27,18 @@
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
         <property name="configLocation" value="classpath:mybatis-config.xml" />
-        <property name="typeAliasesPackage" value="com.pwx.ssmdemo.entity" />
-        <property name="mapperLocations" value="classpath*:com/pwx/ssmdemo/mapper/*.xml" />
+        <property name="typeAliasesPackage" value="com.pwx.hrmapp.entity" />
+        <property name="mapperLocations" value="classpath*:com/pwx/hrmapp/mapper/*.xml" />
     </bean>
     <!-- 配置扫描Dao接口包，动态实现Dao接口，注入到spring容器中 -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
-        <property name="basePackage" value="com.pwx.ssmdemo.dao" />
+        <property name="basePackage" value="com.pwx.hrmapp.dao" />
     </bean>
 
     <!-- Spring Service层 -->
     <!-- 扫描service包下所有使用注解的类型 -->
-    <context:component-scan base-package="com.pwx.ssmdemo.service" />
+    <context:component-scan base-package="com.pwx.hrmapp.service" />
     <!-- 配置事务管理器 -->
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource" />

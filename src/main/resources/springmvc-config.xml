@@ -11,7 +11,7 @@
        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
     <!-- 自动扫描该包，SpringMVC会将包下用了@controller注解的类注册为Spring的controller -->
-    <context:component-scan base-package="com.pwx.ssmdemo.controller" />
+    <context:component-scan base-package="com.pwx.hrmapp.controller" />
 
     <!-- 开启SpringMVC注解模式 -->
     <!-- 简化配置：
