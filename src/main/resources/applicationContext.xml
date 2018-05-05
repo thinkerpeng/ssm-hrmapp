@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd ">
+
+    <!-- Spring DAO 层：配置整合mybatis过程 -->
+    <!-- 配置数据库相关参数properties的属性：${url} -->
+    <context:property-placeholder location="classpath:jdbc.properties" />
+    <!-- 数据库连接池 -->
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <!-- 配置连接池属性 -->
+        <property name="driverClass" value="${jdbc.driver}" />
+        <property name="jdbcUrl" value="${jdbc.url}" />
+        <property name="user" value="${jdbc.username}" />
+        <property name="password" value="${jdbc.password}" />
+        <!-- c3p0连接池的私有属性 -->
+        <property name="maxPoolSize" value="30" />
+        <property name="minPoolSize" value="10" />
+        <property name="autoCommitOnClose" value="false" />
+        <property name="checkoutTimeout" value="10000" />
+        <property name="acquireRetryAttempts" value="2" />
+    </bean>
+    <!-- 配置SqlSessionFactory对象 -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <property name="configLocation" value="classpath:mybatis-config.xml" />
+        <property name="typeAliasesPackage" value="com.pwx.ssmdemo.entity" />
+        <property name="mapperLocations" value="classpath*:com/pwx/ssmdemo/mapper/*.xml" />
+    </bean>
+    <!-- 配置扫描Dao接口包，动态实现Dao接口，注入到spring容器中 -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+        <property name="basePackage" value="com.pwx.ssmdemo.dao" />
+    </bean>
+
+    <!-- Spring Service层 -->
+    <!-- 扫描service包下所有使用注解的类型 -->
+    <context:component-scan base-package="com.pwx.ssmdemo.service" />
+    <!-- 配置事务管理器 -->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource" />
+    </bean>
+    <!-- 配置基于注解的声明式事务 -->
+    <tx:annotation-driven transaction-manager="transactionManager" />
+</beans>
