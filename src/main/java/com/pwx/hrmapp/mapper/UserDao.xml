@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pwx.hrmapp.dao.UserDao">
+
+    <sql id="baseColumn" >
+        id, username, loginname, password, status, createDate
+    </sql>
+
+    <!--根据登录名和密码查询用户-->
+    <select id="selectByLoginnameAndPassword" resultType="com.pwx.hrmapp.entity.User" parameterType="java.lang.String">
+        select
+        <include refid="baseColumn" />
+        from hrm_db.tb_user_inf
+        where loginname = #{loginname} and password = #{password}
+    </select>
+
+    <!--根据ID查询用户-->
+    <select id="selectById" resultType="com.pwx.hrmapp.entity.User" parameterType="java.lang.String">
+        SELECT
+        <include refid="baseColumn" />
+        FROM hrm_db.tb_user_inf
+        WHERE ID = #{id}
+    </select>
+
+    <!--插入用户-->
+    <insert id="saveUser" parameterType="com.pwx.hrmapp.entity.User">
+        INSERT INTO hrm_db.tb_user_inf(LOGINNAME, PASSWORD, USERNAME) VALUES
+            (#{user.loginname}, #{user.password}, #{user.username})
+    </insert>
+
+    <!--根据id删除用户-->
+    <select id="delteUser" parameterType="java.lang.String">
+        DELETE FROM hrm_db.tb_user_inf WHERE ID = #{id}
+    </select>
+</mapper>
