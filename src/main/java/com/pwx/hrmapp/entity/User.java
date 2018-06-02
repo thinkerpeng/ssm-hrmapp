@@ -38,6 +38,18 @@ public class User implements Serializable {
      */
     private Date createDate;
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", loginname='" + loginname + '\'' +
+                ", password='" + password + '\'' +
+                ", status=" + status +
+                ", createDate=" + createDate +
+                '}';
+    }
+
     public Integer getId() {
         return id;
     }

@@ -5,6 +5,10 @@ import com.pwx.hrmapp.entity.User;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 /**
  * Created by peng on 2018/5/7.
  */
@@ -31,13 +35,37 @@ public class UserDaoTest extends BaseTest {
     @Test
     public void saveUser() throws Exception {
         User user = new User();
-        user.setLoginname("pengweixiang");
-        user.setPassword("123456");
-        user.setUsername("彭伟响");
+        user.setLoginname("pengweixiang111");
+        user.setPassword("12345678");
+        user.setUsername("彭伟响111");
         userDao.saveUser(user);
     }
 
-    public void delteUser() throws Exception {
+    @Test
+    public void deleteUser() throws Exception {
+        String id = "2";
+        userDao.deleteUser(id);
+    }
 
+    @Test
+    public void updateUser() throws Exception {
+        User user = userDao.selectById("3");
+        if (user != null) {
+            user.setUsername("彭伟响");
+            user.setPassword("mikepeng*361");
+            userDao.updateUser(user);
+        }
+    }
+
+    @Test
+    public void selectByParam() throws Exception {
+        Map<String, Object> param = new HashMap<>();
+        param.put("username", "彭伟响");
+        param.put("start", 2);
+        param.put("size", 5);
+        List<User> userList = userDao.selectByParam(param);
+        userList.forEach(user -> {
+            System.out.println(user);
+        });
     }
 }

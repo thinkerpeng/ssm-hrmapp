@@ -27,22 +27,22 @@ public interface UserDao {
     User selectById(@Param("id") String id);
 
     /**
-     * 根据id删除用户
-     * @param id
-     */
-    void delteUser(@Param("id") String id);
-
-    /**
-     * 根据id修改用户
-     * @param id
-     */
-    void updateUser(@Param("id") String id);
-
-    /**
      * 插入用户
      * @param user
      */
-    void saveUser(@Param("user") User user);
+    void saveUser(User user);
+
+    /**
+     * 根据id删除用户
+     * @param id
+     */
+    void deleteUser(@Param("id") String id);
+
+    /**
+     * 根据id修改用户
+     * @param user user
+     */
+    void updateUser(User user);
 
     /**
      * 分页动态查询
