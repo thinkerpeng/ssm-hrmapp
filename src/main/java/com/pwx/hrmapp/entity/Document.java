@@ -40,6 +40,11 @@ public class Document implements Serializable {
      */
     private Date createDate;
 
+    /**
+     * 上传人
+     */
+    private User user;
+
     public Integer getId() {
         return id;
     }
@@ -86,5 +91,13 @@ public class Document implements Serializable {
 
     public void setCreateDate(Date createDate) {
         this.createDate = createDate;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

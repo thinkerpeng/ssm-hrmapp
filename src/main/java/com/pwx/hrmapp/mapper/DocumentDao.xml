@@ -2,14 +2,13 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.pwx.hrmapp.dao.NoticeDao">
+<mapper namespace="com.pwx.hrmapp.dao.DocumentDao">
 
-    <!--动态查询公告-->
-    <select id="selectByParam" parameterType="hashMap" resultMap="NoticeMap">
-        SELECT * FROM hrm_db.tb_notice_inf
+    <!--动态查询-->
+    <select id="selectByParam" parameterType="hashMap" resultMap="DocumentMap">
+        SELECT * FROM hrm_db.tb_document_inf
         <where>
-            <if test="title != null">title like concat('%', #{title}, '%')</if>
-            <if test="content != null"> and content like concat('%', #{content}, '%')</if>
+            <if test="title != null and title != ''">title like concat('%', #{title}, '%')</if>
         </where>
         <choose>
             <when test="pageModel != null and pageModel.firstLimitParam != null and pageModel.pageSize != null">
@@ -23,41 +22,32 @@
             </otherwise>
         </choose>
     </select>
-    <resultMap id="NoticeMap" type="com.pwx.hrmapp.entity.Notice">
+    <resultMap id="DocumentMap" type="com.pwx.hrmapp.entity.Document">
         <id property="id" column="id"/>
         <result property="title" column="title"/>
-        <result property="content" column="content"/>
+        <result property="filename" column="filename"/>
+        <result property="remark" column="remark"/>
         <result property="createDate" column="create_date" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
         <!--一对一关联映射-->
         <association property="user" column="user_id" select="com.pwx.hrmapp.dao.UserDao.selectById"
                      javaType="com.pwx.hrmapp.entity.User"/>
     </resultMap>
 
-    <!--统计公告数量-->
+    <!--查询总数-->
     <select id="count" parameterType="hashMap" resultType="java.lang.Integer">
-        SELECT count(0) FROM hrm_db.tb_notice_inf
+        SELECT count(0) FROM hrm_db.tb_document_inf
         <where>
-            <if test="title != null">title like concat('%', #{title}, '%')</if>
-            <if test="content != null"> and content like concat('%', #{content}, '%')</if>
+            <if test="title != null and title != ''">title like concat('%', #{title}, '%')</if>
         </where>
     </select>
 
-    <!--根据id查询公告-->
-    <select id="selectById" parameterType="java.lang.Integer" resultMap="NoticeMap">
-        SELECT * FROM hrm_db.tb_notice_inf WHERE ID = #{id}
-    </select>
-
-    <!--根据id删除公告-->
-    <delete id="deleteById" parameterType="java.lang.Integer">
-        DELETE FROM hrm_db.tb_notice_inf WHERE ID = #{id}
-    </delete>
-
-    <!--动态插入公告-->
+    <!--动态插入文档-->
     <sql id="insertKey">
         <!-- 去掉最后一个, -->
         <trim suffixOverrides=",">
             <if test="title != null">title,</if>
-            <if test="content != null">content,</if>
+            <if test="filename != null">filename,</if>
+            <if test="remark != null">remark,</if>
             <if test="user != null and user.id != null">user_id,</if>
         </trim>
     </sql>
@@ -65,20 +55,32 @@
         <!-- 去掉最后一个, -->
         <trim suffixOverrides=",">
             <if test="title != null">#{title},</if>
-            <if test="content != null">#{content},</if>
+            <if test="filename != null">#{filename},</if>
+            <if test="remark != null">#{remark},</if>
             <if test="user != null and user.id != null">#{user.id},</if>
         </trim>
     </sql>
-    <insert id="save" parameterType="com.pwx.hrmapp.entity.Notice">
-        INSERT INTO hrm_db.tb_notice_inf(<include refid="insertKey"/> ) VALUES (<include refid="insertValue"/> )
+    <insert id="save" parameterType="com.pwx.hrmapp.entity.Document">
+        INSERT INTO hrm_db.tb_document_inf(<include refid="insertKey"/> ) VALUES (<include refid="insertValue"/> )
     </insert>
 
-    <!--动态修改公告-->
-    <update id="update" parameterType="com.pwx.hrmapp.entity.Notice">
-        UPDATE hrm_db.tb_notice_inf
+    <!--根据id查找文档-->
+    <select id="selectById" parameterType="java.lang.Integer" resultMap="DocumentMap">
+        SELECT * FROM hrm_db.tb_document_inf WHERE ID = #{id}
+    </select>
+
+    <!--根据id删除文档-->
+    <delete id="deleteById" parameterType="java.lang.Integer">
+        DELETE FROM hrm_db.tb_document_inf WHERE ID = #{id}
+    </delete>
+
+    <!--动态更新文档-->
+    <update id="update" parameterType="com.pwx.hrmapp.entity.Document">
+        UPDATE hrm_db.tb_document_inf
         <set>
             <if test="title != null">title=#{title},</if>
-            <if test="content != null">content=#{content},</if>
+            <if test="filename != null">filename=#{filename},</if>
+            <if test="remark != null">remark=#{remark},</if>
             <if test="user != null and user.id != null">user_id=#{user.id}</if>
         </set>
         WHERE id=#{id}

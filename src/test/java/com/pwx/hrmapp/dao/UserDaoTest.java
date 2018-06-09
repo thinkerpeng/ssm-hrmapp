@@ -62,8 +62,6 @@ public class UserDaoTest extends BaseTest {
     public void selectByParam() throws Exception {
         Map<String, Object> param = new HashMap<>();
         param.put("username", "彭伟响");
-        param.put("start", 2);
-        param.put("size", 5);
         List<User> userList = userDao.selectByParam(param);
         userList.forEach(user -> {
             System.out.println(user);

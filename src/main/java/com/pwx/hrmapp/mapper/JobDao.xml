@@ -23,10 +23,10 @@
             </if>
         </where>
         <choose>
-            <when test="start != null and size != null">
-                ORDER BY ID LIMIT #{start}, #{size}
+            <when test="pageModel != null and pageModel.firstLimitParam != null and pageModel.pageSize != null">
+                ORDER BY ID LIMIT #{pageModel.firstLimitParam}, #{pageModel.pageSize}
             </when>
-            <when test="start != null">
+            <when test="pageModel != null and pageModel.firstLimitParam != null">
                 ORDER BY ID LIMIT #{start}
             </when>
             <otherwise>

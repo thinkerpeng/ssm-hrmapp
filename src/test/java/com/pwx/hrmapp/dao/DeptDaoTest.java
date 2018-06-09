@@ -2,6 +2,7 @@ package com.pwx.hrmapp.dao;
 
 import com.pwx.hrmapp.BaseTest;
 import com.pwx.hrmapp.entity.Dept;
+import com.pwx.hrmapp.util.tag.PageModel;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -20,7 +21,12 @@ public class DeptDaoTest extends BaseTest {
     @Test
     public void selectByParam() throws Exception {
         Map<String, Object> param = new HashMap<>();
-        param.put("name", "技术部");
+        PageModel pageModel = new PageModel();
+        pageModel.setRecordCount(6);
+        pageModel.setPageIndex(2);
+        pageModel.setPageSize(5);
+        //param.put("name", "技术部");
+        param.put("pageModel", pageModel);
         List<Dept> deptList =  deptDao.selectByParam(param);
         deptList.forEach(dept -> {
             System.out.println(dept);
@@ -30,7 +36,7 @@ public class DeptDaoTest extends BaseTest {
     @Test
     public void count() throws Exception {
         Map<String, Object> param = new HashMap<>();
-        param.put("name", "技术部");
+        //param.put("name", "技术部");
         Integer count =  deptDao.count(param);
         System.out.println(count);
     }

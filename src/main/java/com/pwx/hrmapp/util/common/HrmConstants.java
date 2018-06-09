@@ -29,5 +29,5 @@ public class HrmConstants {
     /**
      * 默认每页5条数据
      */
-    public static final int PAGE_DEFAULT_SIZE = 5;
+    public static int PAGE_DEFAULT_SIZE = 5;
 }
