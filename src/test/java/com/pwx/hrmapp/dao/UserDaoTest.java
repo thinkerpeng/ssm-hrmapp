@@ -37,6 +37,7 @@ public class UserDaoTest extends BaseTest {
         User user = new User();
         user.setLoginname("pengweixiang111");
         user.setPassword("12345678");
+        user.setStatus(1);
         user.setUsername("彭伟响111");
         userDao.saveUser(user);
     }
@@ -67,5 +68,13 @@ public class UserDaoTest extends BaseTest {
         userList.forEach(user -> {
             System.out.println(user);
         });
+    }
+
+    @Test
+    public void count() throws Exception {
+        Map<String, Object> param = new HashMap<>();
+        param.put("username", "彭伟响");
+        Integer count = userDao.count(param);
+        System.out.println(count);
     }
 }

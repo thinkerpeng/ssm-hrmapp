@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pwx.hrmapp.dao.JobDao">
+
+    <!--根据id查询职位-->
+    <select id="selectById" parameterType="java.lang.Integer" resultType="com.pwx.hrmapp.entity.Job">
+        SELECT * FROM hrm_db.tb_job_inf WHERE ID = #{id}
+    </select>
+
+    <!--查询所有的职位-->
+    <select id="selectAllJob" resultType="com.pwx.hrmapp.entity.Job">
+        SELECT * FROM hrm_db.tb_job_inf
+    </select>
+
+    <!--分页动态查询-->
+    <select id="selectByParam" parameterType="hashMap" resultType="com.pwx.hrmapp.entity.Job">
+        SELECT * FROM hrm_db.tb_job_inf
+        <where>
+            <if test="name != null and name != ''">
+                name LIKE concat('%', #{name}, '%')
+            </if>
+        </where>
+        <choose>
+            <when test="start != null and size != null">
+                ORDER BY ID LIMIT #{start}, #{size}
+            </when>
+            <when test="start != null">
+                ORDER BY ID LIMIT #{start}
+            </when>
+            <otherwise>
+                ORDER BY ID
+            </otherwise>
+        </choose>
+    </select>
+
+    <!--动态查询总数量-->
+    <select id="count" parameterType="hashMap" resultType="java.lang.Integer">
+        SELECT count(0) FROM hrm_db.tb_job_inf
+        <where>
+            <if test="name != null and name != ''">
+                name LIKE concat('%', #{name}, '%')
+            </if>
+        </where>
+    </select>
+
+    <!--根据id删除职位-->
+    <delete id="deleteById" parameterType="java.lang.Integer">
+        DELETE FROM hrm_db.tb_job_inf WHERE ID = #{id}
+    </delete>
+
+    <!--动态插入职位-->
+    <sql id="insertKey">
+        <!-- 去掉最后一个, -->
+        <trim suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="name != null">name,</if>
+            <if test="remark != null">remark,</if>
+        </trim>
+    </sql>
+    <sql id="insertValue">
+        <!-- 去掉最后一个, -->
+        <trim suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="name != null">#{name},</if>
+            <if test="remark != null">#{remark},</if>
+        </trim>
+    </sql>
+    <insert id="save" parameterType="com.pwx.hrmapp.entity.Job">
+        INSERT INTO hrm_db.tb_job_inf(<include refid="insertKey" />) VALUES (<include refid="insertValue" />)
+    </insert>
+
+    <!--动态修改职位-->
+    <update id="update" parameterType="com.pwx.hrmapp.entity.Job">
+        UPDATE hrm_db.tb_job_inf
+        <set>
+            <if test="name != null">name=#{name},</if>
+            <if test="remark != null">remark=#{remark}</if>
+        </set>
+        WHERE id=#{id}
+    </update>
+</mapper>

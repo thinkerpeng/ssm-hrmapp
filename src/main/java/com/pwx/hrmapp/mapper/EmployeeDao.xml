@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pwx.hrmapp.dao.EmployeeDao">
+
+    <!--根据参数查询员工总数-->
+    <select id="count" parameterType="hashMap" resultType="java.lang.Integer">
+        SELECT count(0) FROM hrm_db.tb_employee_inf
+        <where>
+            <if test="dept != null and dept.id != null"> DEPT_ID = #{dept.id} </if>
+            <if test="job != null and job.id != null"> and JOB_ID = #{job.id} </if>
+            <if test="name != null"> and NAME = #{name} </if>
+            <if test="phone != null"> and PHONE = #{phone} </if>
+            <if test="cardId != null"> and CARD_ID = #{cardId} </if>
+            <if test="sex != null"> and SEX = #{sex} </if>
+        </where>
+    </select>
+
+    <!--根据参数动态查询员工-->
+    <select id="selectByParam" parameterType="hashMap" resultMap="employeeMap">
+        SELECT * FROM hrm_db.tb_employee_inf
+        <where>
+            <if test="dept != null and dept.id != null"> DEPT_ID = #{dept.id} </if>
+            <if test="job != null and job.id != null"> and JOB_ID = #{job.id} </if>
+            <if test="name != null"> and NAME = #{name} </if>
+            <if test="phone != null"> and PHONE = #{phone} </if>
+            <if test="cardId != null"> and CARD_ID = #{cardId} </if>
+            <if test="sex != null"> and SEX = #{sex} </if>
+        </where>
+        <choose>
+            <when test="start != null and size != null"> ORDER BY ID LIMIT #{start}, #{size} </when>
+            <when test="start != null"> ORDER BY ID LIMIT #{start} </when>
+            <otherwise> ORDER BY ID </otherwise>
+        </choose>
+    </select>
+    <!--映射Employee对象的resultMap-->
+    <resultMap id="employeeMap" type="com.pwx.hrmapp.entity.Employee">
+        <id property="id" column="ID"/>
+        <result property="name" column="NAME"/>
+        <result property="cardId" column="CARD_ID"/>
+        <result property="address" column="ADDRESS"/>
+        <result property="postCode" column="POST_CODE"/>
+        <result property="tel" column="TEL"/>
+        <result property="phone" column="PHONE"/>
+        <result property="qqNum" column="QQ_NUM"/>
+        <result property="email" column="EMAIL"/>
+        <result property="sex" column="SEX"/>
+        <result property="party" column="PARTY"/>
+        <result property="birthday" column="BIRTHDAY" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+        <result property="race" column="RACE"/>
+        <result property="education" column="EDUCATION"/>
+        <result property="speciality" column="SPECIALITY"/>
+        <result property="hobby" column="HOBBY"/>
+        <result property="remark" column="REMARK"/>
+        <result property="createDate" column="CREATE_DATE" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+        <!--一对一关联映射-->
+        <association property="dept" column="DEPT_ID" select="com.pwx.hrmapp.dao.DeptDao.selectById"
+                     javaType="com.pwx.hrmapp.entity.Dept"/>
+        <association property="job" column="JOB_ID" select="com.pwx.hrmapp.dao.JobDao.selectById"
+                     javaType="com.pwx.hrmapp.entity.Job"/>
+    </resultMap>
+
+    <!--动态插入员工-->
+    <sql id="insertKey">
+        <!-- 去掉最后一个, -->
+        <trim suffixOverrides=",">
+            <if test="name != null">NAME,</if>
+            <if test="cardId != null">CARD_ID,</if>
+            <if test="address != null">ADDRESS,</if>
+            <if test="postCode != null">POST_CODE,</if>
+            <if test="tel != null">TEL,</if>
+            <if test="phone != null">PHONE,</if>
+            <if test="qqNum != null">QQ_NUM,</if>
+            <if test="email != null">EMAIL,</if>
+            <if test="sex != null">SEX,</if>
+            <if test="party != null">PARTY,</if>
+            <if test="birthday != null">BIRTHDAY,</if>
+            <if test="race != null">RACE,</if>
+            <if test="education != null">EDUCATION,</if>
+            <if test="speciality != null">SPECIALITY,</if>
+            <if test="hobby != null">HOBBY,</if>
+            <if test="remark != null">REMARK,</if>
+            <if test="createDate != null">CREATE_DATE,</if>
+            <if test="dept != null and dept.id != null">DEPT_ID,</if>
+            <if test="job != null and job.id != null">JOB_ID,</if>
+        </trim>
+    </sql>
+    <sql id="insertValue">
+        <!-- 去掉最后一个, -->
+        <trim suffixOverrides=",">
+            <if test="name != null">#{name},</if>
+            <if test="cardId != null">#{cardId},</if>
+            <if test="address != null">#{address},</if>
+            <if test="postCode != null">#{postCode},</if>
+            <if test="tel != null">#{tel},</if>
+            <if test="phone != null">#{phone},</if>
+            <if test="qqNum != null">#{qqNum},</if>
+            <if test="email != null">#{email},</if>
+            <if test="sex != null">#{sex},</if>
+            <if test="party != null">#{party},</if>
+            <if test="birthday != null">#{birthday},</if>
+            <if test="race != null">#{race},</if>
+            <if test="education != null">#{education},</if>
+            <if test="speciality != null">#{speciality},</if>
+            <if test="hobby != null">#{hobby},</if>
+            <if test="remark != null">#{remark},</if>
+            <if test="createDate != null">#{createDate},</if>
+            <if test="dept != null and dept.id != null">#{dept.id},</if>
+            <if test="job != null and job.id != null">#{job.id},</if>
+        </trim>
+    </sql>
+    <insert id="save" parameterType="com.pwx.hrmapp.entity.Employee">
+        INSERT INTO hrm_db.tb_employee_inf(<include refid="insertKey" />) VALUES (<include refid="insertValue"/>)
+    </insert>
+
+    <!--动态修改员工-->
+    <update id="update" parameterType="com.pwx.hrmapp.entity.Employee">
+        UPDATE hrm_db.tb_employee_inf
+        <set>
+            <if test="name != null">NAME=#{name},</if>
+            <if test="cardId != null">CARD_ID=#{cardId},</if>
+            <if test="address != null">ADDRESS=#{address},</if>
+            <if test="postCode != null">POST_CODE=#{postCode},</if>
+            <if test="tel != null">TEL=#{tel},</if>
+            <if test="phone != null">PHONE=#{phone},</if>
+            <if test="qqNum != null">QQ_NUM=#{qqNum},</if>
+            <if test="email != null">EMAIL=#{email},</if>
+            <if test="sex != null">SEX=#{sex},</if>
+            <if test="party != null">PARTY=#{party},</if>
+            <if test="birthday != null">BIRTHDAY=#{birthday},</if>
+            <if test="race != null">RACE=#{race},</if>
+            <if test="education != null">EDUCATION=#{education},</if>
+            <if test="speciality != null">SPECIALITY=#{speciality},</if>
+            <if test="hobby != null">HOBBY=#{hobby},</if>
+            <if test="remark != null">REMARK=#{remark},</if>
+            <if test="createDate != null">CREATE_DATE=#{createDate},</if>
+            <if test="dept != null">DEPT_ID=#{dept},</if>
+            <if test="job != null">JOB_ID=#{job},</if>
+        </set>
+        WHERE id=#{id}
+    </update>
+
+    <!--根据id删除员工-->
+    <delete id="deleteById" parameterType="java.lang.Integer">
+        DELETE FROM  hrm_db.tb_employee_inf WHERE ID = #{id}
+    </delete>
+
+    <!--根据id查询员工-->
+    <select id="selectById" parameterType="java.lang.Integer" resultMap="employeeMap">
+        SELECT * FROM hrm_db.tb_employee_inf WHERE ID = #{id}
+    </select>
+</mapper>

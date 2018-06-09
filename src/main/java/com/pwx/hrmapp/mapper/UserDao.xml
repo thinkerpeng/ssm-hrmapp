@@ -24,16 +24,33 @@
         WHERE ID = #{id}
     </select>
 
-    <!--插入用户-->
+    <!--动态插入用户-->
+    <sql id="insertKey">
+        <!-- 去掉最后一个, -->
+        <trim suffixOverrides=",">
+            <if test="loginname != null">loginname,</if>
+            <if test="password != null">password,</if>
+            <if test="status != null">status,</if>
+            <if test="username != null">username,</if>
+        </trim>
+    </sql>
+    <sql id="insertValue">
+        <!-- 去掉最后一个, -->
+        <trim suffixOverrides=",">
+            <if test="loginname != null">#{loginname},</if>
+            <if test="password != null">#{password},</if>
+            <if test="status != null">#{status},</if>
+            <if test="username != null">#{username},</if>
+        </trim>
+    </sql>
     <insert id="saveUser" parameterType="com.pwx.hrmapp.entity.User">
-        INSERT INTO hrm_db.tb_user_inf(LOGINNAME, PASSWORD, USERNAME) VALUES
-            (#{loginname}, #{password}, #{username})
+        INSERT INTO hrm_db.tb_user_inf(<include refid="insertKey"/> ) VALUES (<include refid="insertValue"/> )
     </insert>
 
     <!--根据id删除用户-->
-    <select id="deleteUser" parameterType="java.lang.String">
+    <delete id="deleteUser" parameterType="java.lang.String">
         DELETE FROM hrm_db.tb_user_inf WHERE ID = #{id}
-    </select>
+    </delete>
 
     <!--根据id修改用户-->
     <update id="updateUser" parameterType="com.pwx.hrmapp.entity.User">
@@ -69,5 +86,18 @@
                 ORDER BY CREATEDATE DESC
             </otherwise>
         </choose>
+    </select>
+
+    <!--根据参数查询用户总数-->
+    <select id="count" parameterType="hashMap" resultType="java.lang.Integer">
+        SELECT COUNT(0) FROM hrm_db.tb_user_inf
+        <where>
+            <if test="username != null">
+                username LIKE concat('%', #{username}, '%')
+            </if>
+            <if test="status != null">
+                and status LIKE concat('%', #{status}, '%')
+            </if>
+        </where>
     </select>
 </mapper>
