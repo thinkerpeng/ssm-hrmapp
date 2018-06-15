@@ -5,7 +5,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.pwx</groupId>
-  <artifactId>ssm-hrmapp</artifactId>
+  <artifactId>hrmapp</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>war</packaging>
 
@@ -133,8 +133,15 @@
       <artifactId>javax.servlet-api</artifactId>
       <version>3.1.0</version>
     </dependency>
+    <dependency>
+      <groupId>javax.servlet.jsp</groupId>
+      <artifactId>jsp-api</artifactId>
+      <version>2.0</version>
+      <scope>provided</scope>
+    </dependency>
 
-      <!-- aspectj框架包 -->
+
+    <!-- aspectj框架包 -->
       <dependency>
           <groupId>org.aspectj</groupId>
           <artifactId>aspectjrt</artifactId>
@@ -150,10 +157,17 @@
           <artifactId>aspectjweaver</artifactId>
           <version>1.8.13</version>
       </dependency>
+
+    <!--文件上传所依赖的jar包-->
+    <dependency>
+      <groupId>commons-fileupload</groupId>
+      <artifactId>commons-fileupload</artifactId>
+      <version>1.3.1</version>
+    </dependency>
   </dependencies>
 
   <build>
-    <finalName>ssm-hrmapp</finalName>
+    <finalName>hrmapp</finalName>
     <resources>
         <resource>
             <directory>src/main/java</directory>
@@ -174,10 +188,10 @@
           <configuration>
             <scanIntervalSeconds>10</scanIntervalSeconds>
             <httpConnector>
-              <port>8080</port>
+              <port>8081</port>
             </httpConnector>
             <webApp>
-              <contextPath>/ssmdemo</contextPath>
+              <contextPath>/hrmapp</contextPath>
             </webApp>
           </configuration>
         </plugin>

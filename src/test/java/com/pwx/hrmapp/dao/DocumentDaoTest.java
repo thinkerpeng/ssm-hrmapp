@@ -25,7 +25,7 @@ public class DocumentDaoTest extends BaseTest {
         Document document = new Document();
         document.setFilename("DocumentDao.java");
         document.setTitle("Spring+Mybatis企业应用实战");
-        document.setUser(userDao.selectById("1"));
+        document.setUser(userDao.selectById(1));
         documentDao.save(document);
     }
 

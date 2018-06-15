@@ -26,7 +26,7 @@ public class NoticeDaoTest extends BaseTest {
         Notice notice = new Notice();
         notice.setTitle("公告二");
         notice.setContent("彭伟响，很牛逼！！！");
-        User user = userDao.selectById("2");
+        User user = userDao.selectById(2);
         if (user != null) {
             notice.setUser(user);
         }
@@ -38,7 +38,7 @@ public class NoticeDaoTest extends BaseTest {
         Notice notice = new Notice();
         notice.setId(3);
         notice.setContent("彭伟响，很努力！");
-        User user = userDao.selectById("1");
+        User user = userDao.selectById(1);
         if (user != null) {
             notice.setUser(user);
             System.out.println("=================" + user.getId());

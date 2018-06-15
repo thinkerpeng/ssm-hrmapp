@@ -31,7 +31,7 @@ public class User implements Serializable {
     /**
      * 状态
      */
-    private Integer status;
+    private String userStatus;
 
     /**
      * 建档日期
@@ -45,7 +45,7 @@ public class User implements Serializable {
                 ", username='" + username + '\'' +
                 ", loginname='" + loginname + '\'' +
                 ", password='" + password + '\'' +
-                ", status=" + status +
+                ", userStatus=" + userStatus +
                 ", createDate=" + createDate +
                 '}';
     }
@@ -82,12 +82,12 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public Integer getStatus() {
-        return status;
+    public String getUserStatus() {
+        return userStatus;
     }
 
-    public void setStatus(Integer status) {
-        this.status = status;
+    public void setUserStatus(String userStatus) {
+        this.userStatus = userStatus;
     }
 
     public Date getCreateDate() {

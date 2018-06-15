@@ -5,7 +5,7 @@
 <mapper namespace="com.pwx.hrmapp.dao.UserDao">
 
     <sql id="baseColumn" >
-        id, username, loginname, password, status, createDate
+        id, username, loginname, password, userStatus, createDate
     </sql>
 
     <!--根据登录名和密码查询用户-->
@@ -17,7 +17,7 @@
     </select>
 
     <!--根据ID查询用户-->
-    <select id="selectById" resultType="com.pwx.hrmapp.entity.User" parameterType="java.lang.String">
+    <select id="selectById" resultType="com.pwx.hrmapp.entity.User" parameterType="java.lang.Integer">
         SELECT
         <include refid="baseColumn" />
         FROM hrm_db.tb_user_inf
@@ -30,7 +30,7 @@
         <trim suffixOverrides=",">
             <if test="loginname != null">loginname,</if>
             <if test="password != null">password,</if>
-            <if test="status != null">status,</if>
+            <if test="userStatus != null">userStatus,</if>
             <if test="username != null">username,</if>
         </trim>
     </sql>
@@ -39,7 +39,7 @@
         <trim suffixOverrides=",">
             <if test="loginname != null">#{loginname},</if>
             <if test="password != null">#{password},</if>
-            <if test="status != null">#{status},</if>
+            <if test="userStatus != null">#{userStatus},</if>
             <if test="username != null">#{username},</if>
         </trim>
     </sql>
@@ -48,7 +48,7 @@
     </insert>
 
     <!--根据id删除用户-->
-    <delete id="deleteUser" parameterType="java.lang.String">
+    <delete id="deleteUser" parameterType="java.lang.Integer">
         DELETE FROM hrm_db.tb_user_inf WHERE ID = #{id}
     </delete>
 
@@ -59,7 +59,7 @@
                 <if test="username != null">username=#{username},</if>
                 <if test="loginname != null">loginname=#{loginname},</if>
                 <if test="password != null">password=#{password},</if>
-                <if test="status != null">status=#{status}</if>
+                <if test="userStatus != null">userStatus=#{userStatus}</if>
             </set>
         WHERE id=#{id}
     </update>
@@ -71,8 +71,8 @@
             <if test="username != null">
                 username LIKE concat('%', #{username}, '%')
             </if>
-            <if test="status != null">
-                and status LIKE concat('%', #{status}, '%')
+            <if test="userStatus != null">
+                and userStatus LIKE concat('%', #{userStatus}, '%')
             </if>
         </where>
         <choose>
@@ -95,8 +95,8 @@
             <if test="username != null">
                 username LIKE concat('%', #{username}, '%')
             </if>
-            <if test="status != null">
-                and status LIKE concat('%', #{status}, '%')
+            <if test="userStatus != null">
+                and userStatus LIKE concat('%', #{userStatus}, '%')
             </if>
         </where>
     </select>

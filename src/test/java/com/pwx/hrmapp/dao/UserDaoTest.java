@@ -27,7 +27,7 @@ public class UserDaoTest extends BaseTest {
 
     @Test
     public void selectById() throws Exception {
-        String id = "1";
+        Integer id = 1;
         User user = userDao.selectById(id);
         System.out.println(user.getUsername() + ", id: " + user.getId());
     }
@@ -37,20 +37,20 @@ public class UserDaoTest extends BaseTest {
         User user = new User();
         user.setLoginname("pengweixiang111");
         user.setPassword("12345678");
-        user.setStatus(1);
+        user.setUserStatus("1");
         user.setUsername("彭伟响111");
         userDao.saveUser(user);
     }
 
     @Test
     public void deleteUser() throws Exception {
-        String id = "2";
+        Integer id = 2;
         userDao.deleteUser(id);
     }
 
     @Test
     public void updateUser() throws Exception {
-        User user = userDao.selectById("3");
+        User user = userDao.selectById(3);
         if (user != null) {
             user.setUsername("彭伟响");
             user.setPassword("mikepeng*361");

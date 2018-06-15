@@ -24,7 +24,7 @@ public interface UserDao {
      * @param id
      * @return
      */
-    User selectById(@Param("id") String id);
+    User selectById(Integer id);
 
     /**
      * 插入用户
@@ -36,7 +36,7 @@ public interface UserDao {
      * 根据id删除用户
      * @param id
      */
-    void deleteUser(@Param("id") String id);
+    void deleteUser(Integer id);
 
     /**
      * 根据id修改用户
